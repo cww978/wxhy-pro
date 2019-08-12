@@ -1,33 +1,30 @@
 import { routerMaps } from '@/router/modules/meeting'
-import { signIn, getSignInInfo } from '@/api/meeting'
+import { signIn, getSignInDetail } from '@/api/signInRecord'
 import { userInfo } from '@/api/user'
 export default {
   namespaced: true,
   state: {
     // 是否签到
-    signin: false,
+    signIn: false,
     // 首页菜单
     menus: [],
     // 人物信息
     userInfo: {
       id: '',
-      headImgUrl: ''
+      headImgUrl: '',
+      nickname: ''
     },
     // 人物签到信息
     signinInfo: {
       id: '',
-      deptName: '',
-      name: '',
       meetingId: '',
-      num: '',
-      longitude: '',
-      latitude: ''
+      num: ''
     }
   },
   getters: {
-    signin: state => state.signin,
-    userName: state => state.signinInfo.name,
+    signIn: state => state.signIn,
     userHeadImgUrl: state => state.userInfo.headImgUrl,
+    nickname: state => state.userInfo.nickname,
     signinInfo: state => state.signinInfo,
     menus: state => state.menus
   },
@@ -71,8 +68,8 @@ export default {
       })
     },
     // 更新签到信息
-    updateSigninInfo: ({ commit }, meetingId) => {
-      getSignInInfo({ meetingId: meetingId }).then(res => {
+    updateSignInInfo: ({ commit }, meetingId) => {
+      getSignInDetail({ meetingId: meetingId }).then(res => {
         if (res.data) {
           commit('SET_SIGNININFO', res.data)
           commit('SET_SIGNIN', true)

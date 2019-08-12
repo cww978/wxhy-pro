@@ -1,15 +1,15 @@
 <template>
   <div class="questions">
-    <div class="count-down">
-      <div class="circle-bg"></div>
-      <timing :date="timeDown" ref="timing"></timing>
-    </div>
+    <all-count-down :time="timeDown" ref="timing"></all-count-down>
     <div class="question-main">
       <div class="question-card">
         <div class="question-header">
-          题目
+          <div class="question-number">第1/10题</div>
         </div>
-        <div class="question-content">
+        <p class="question-content">
+          老年人和儿童在应用抗菌药时,最安全的品种是
+        </p>
+        <div class="question-option">
           <div class="question-group">
             <div class="question-cell">答案1</div>
             <div class="question-cell">答案2</div>
@@ -22,17 +22,17 @@
   </div>
 </template>
 <script>
-import Timing from '../components/tool/Timing'
+import AllCountDown from '../components/tool/AllCountDown'
 export default {
   name: 'Questions',
-  components: { Timing },
+  components: { AllCountDown },
   data() {
     return {
       timeDown: 15
     }
   },
   mounted() {
-    this.$refs.timing.start()
+    // this.$refs.timing.start()
   }
 }
 </script>
@@ -40,47 +40,33 @@ export default {
 .questions {
   background-color: #f44336;
 }
-.count-down {
-  display: flex;
-  position: absolute;
-  width: 100vw;
-  top: 30px;
-  z-index: 2;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.circle-bg {
-  box-shadow: 0px 0px 5px 0px #3f3f3f;
-  top: -5px;
-  width: 80px;
-  height: 80px;
-  position: absolute;
-  border-radius: 50%;
-  border: 5px #fff solid;
-  background-color: #fff;
-}
 .question-main {
   position: absolute;
   width: 100vw;
-  top: 60px;
+  top: 75px;
   bottom: 50px;
   display: flex;
   flex-direction: column;
 }
 .question-card {
-  padding-top: 70px;
   height: 100%;
-  box-shadow: 0px 2px 10px 0px #3f3f3f;
   margin: 10px 20px;
   border-radius: 10px;
   background-color: #fff0e7;
 }
 .question-header {
+  height: 40px;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.question-content {
+  padding: 0px 10px;
+}
+.question-option {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 .question-group {
   padding: 0px 10px;
@@ -97,9 +83,5 @@ export default {
 }
 .question-cell:active {
   background-color: #f0f0f0;
-}
-.question-content {
-  display: flex;
-  flex-direction: column;
 }
 </style>

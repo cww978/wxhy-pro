@@ -17,7 +17,7 @@ export default {
     // 获取人员信息
     this.$store.dispatch('user/getUserInfo').then(() => {
       // 刷新签到信息
-      this.$store.dispatch('user/updateSigninInfo', this.meetingId)
+      this.$store.dispatch('user/updateSignInInfo', this.meetingId)
     })
   }
 }
